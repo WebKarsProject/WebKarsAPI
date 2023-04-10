@@ -11,6 +11,6 @@ app.use(cors());
 
 app.use(errorHandler);
 
-app.unsubscribe('/users', userRoutes)
+app.use('/users', userRoutes)
 
 export default app;
