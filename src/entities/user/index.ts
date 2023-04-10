@@ -1,7 +1,7 @@
 import { hashSync } from "bcryptjs";
 import {
-  PrimaryGeneratedColumn,
   Entity,
+  PrimaryGeneratedColumn,
   Column,
   BeforeUpdate,
   BeforeInsert,
@@ -23,10 +23,10 @@ class User {
   email: string
 
   @Column()
-  cpf: number
+  cpf: string
 
   @Column({ length: 11 })
-  phone: number
+  phone: string
 
   @Column()
   password: string
