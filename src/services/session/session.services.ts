@@ -5,24 +5,29 @@ import { compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 import { IUserLogin } from "../../interfaces/user";
+import { userWithoutPasswordSerializer } from "../../serializers/user";
 
 const sessionServices = async (data: IUserLogin) => {
-  const userRepo = AppDataSource.getRepository(User);
-  const user = await userRepo.findOneBy({ email: data.email });
+  const userRepository = AppDataSource.getRepository(User);
+  const userVerify = await userRepository.findOneBy({ email: data.email });
 
-  if (!user) {
+  if (!userVerify) {
     throw new AppError("Email or password invalid", 403);
   }
 
-  const passwordMatch = await compare(data.password, user.password);
+  const passwordMatch = await compare(data.password, userVerify.password);
 
   if (!passwordMatch) {
     throw new AppError("Email or password invalid", 403);
   }
 
   const token = jwt.sign({}, process.env.SECRET_KEY, {
-    subject: user.id,
+    subject: userVerify.id,
     expiresIn: "24h",
+  });
+
+  const user = await userWithoutPasswordSerializer.validate(userVerify, {
+    stripUnknown: true,
   });
 
   return { user, token };
