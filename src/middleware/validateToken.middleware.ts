@@ -21,7 +21,6 @@ const validateTokenMiddleware = async (
 
     req.user = {
       id: decoded.sub,
-      email: decoded.email,
     };
 
     return next();
