@@ -2,39 +2,53 @@ import {
   PrimaryGeneratedColumn,
   Entity,
   Column,
-} from "typeorm";
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
+import User from '../user';
+import Image from '../image';
+import Comment from '../comments';
 
 @Entity('vehicles')
 class Vehicle {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  brand: string
+  brand: string;
 
   @Column()
-  model: string
+  model: string;
 
   @Column()
-  year: Date
+  year: Date;
 
   @Column()
-  fuel: string
+  fuel: string;
 
   @Column()
-  mileage: number
+  mileage: number;
 
   @Column()
-  price: number
+  price: number;
 
   @Column()
-  fipe: number
+  fipe: number;
 
   @Column()
-  description: string
+  description: string;
 
   @Column()
-  published: boolean
+  published: boolean;
+
+  @ManyToOne(() => User, (users) => users.vehicle)
+  user: User;
+
+  @OneToMany(() => Image, (images) => images.vehicle)
+  images: Image[];
+
+  @OneToMany(() => Comment, (comments) => comments.vehicle)
+  comments: Comment[];
 }
 
-export default Vehicle
+export default Vehicle;

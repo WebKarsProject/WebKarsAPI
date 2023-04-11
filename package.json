@@ -21,7 +21,7 @@
     "pg-format": "^1.0.4",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^10.9.1",
-    "typeorm": "0.3.10",
+    "typeorm": "^0.3.14",
     "yup": "0.32.11",
     "zod": "^3.21.4"
   },
