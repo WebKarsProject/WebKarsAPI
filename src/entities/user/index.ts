@@ -1,4 +1,4 @@
-import { hashSync } from "bcryptjs";
+import { hashSync } from 'bcryptjs';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -7,38 +7,41 @@ import {
   BeforeInsert,
   OneToOne,
   JoinColumn,
-} from "typeorm";
+  OneToMany,
+} from 'typeorm';
 
-import Address from "../address";
+import Address from '../address';
+import Vehicle from '../vehicle';
+import Comment from '../comments';
 
 @Entity('users')
 class User {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  name: string
+  name: string;
 
   @Column()
-  email: string
+  email: string;
 
   @Column()
-  cpf: string
+  cpf: string;
 
   @Column({ length: 11 })
-  phone: string
+  phone: string;
 
   @Column()
-  password: string
+  password: string;
 
   @Column()
-  birthday: Date
+  birthday: Date;
 
   @Column()
-  description: string
+  description: string;
 
   @Column()
-  buyer: boolean
+  buyer: boolean;
 
   @BeforeUpdate()
   @BeforeInsert()
@@ -46,8 +49,15 @@ class User {
     this.password = hashSync(this.password, 10);
   }
 
-  @OneToOne(() => Address) @JoinColumn()
-  address: Address
+  @OneToOne(() => Address)
+  @JoinColumn()
+  address: Address;
+
+  @OneToMany(() => Vehicle, (vehicles) => vehicles.user)
+  vehicle: Vehicle[];
+
+  @OneToMany(() => Comment, (comments) => comments.user)
+  comments: Comment[];
 }
 
 export default User;
