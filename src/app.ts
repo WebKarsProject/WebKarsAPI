@@ -4,6 +4,7 @@ import errorHandler from './errors/errorHandler';
 import cors from 'cors';
 import { userRoutes } from './routers/user';
 import sessionRoutes from './routers/session';
+import { vehicleRoutes } from './routers/vehicle';
 
 const app: Application = express();
 
@@ -14,5 +15,5 @@ app.use(errorHandler);
 
 app.use('/users', userRoutes);
 app.use('/session', sessionRoutes);
-
+app.use('/vehicle', vehicleRoutes);
 export default app;
