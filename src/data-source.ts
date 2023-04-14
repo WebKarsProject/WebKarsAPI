@@ -6,7 +6,7 @@ import Vehicle from "./entities/vehicle";
 import Address from "./entities/address";
 import Image from "./entities/image";
 import Comment from "./entities/comments";
-import { CreateTable1681506175930 } from "./migrations/1681506175930-createTable";
+import { CreateTable1681511778545 } from "./migrations/1681511778545-createTable";
 
 const AppDataSource = new DataSource(
   process.env.NODE_ENV === "test"
@@ -26,7 +26,7 @@ const AppDataSource = new DataSource(
         logging: true,
         synchronize: false,
         entities: [User, Vehicle, Address, Image, Comment],
-        migrations: [CreateTable1681506175930],
+        migrations: [CreateTable1681511778545],
       }
 );
 
