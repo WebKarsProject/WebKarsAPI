@@ -16,16 +16,11 @@ userRoutes.post(
   validateDataMiddleware(userSchemaUpdate),
   createUserController
 );
-userRoutes.get(
-  "",
-  validateTokenMiddleware,
-  userExistMiddleware,
-  profileUserController
-);
+userRoutes.get("", validateTokenMiddleware, profileUserController);
 userRoutes.patch(
-  "/:id",
+  "",
   validateDataMiddleware(userSchemaUpdate),
   validateTokenMiddleware,
-  userExistMiddleware,
   updateUserController
 );
+userRoutes.patch("/address", validateTokenMiddleware);
