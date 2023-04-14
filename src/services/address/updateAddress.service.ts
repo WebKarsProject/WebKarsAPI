@@ -5,32 +5,31 @@ import { AppError } from "../../errors/AppError";
 import { IAddressReq } from "../../interfaces/address";
 import { AddressSchemaRet } from "../../schemas/address";
 
-const updateAddressService = async (body: IAddressReq) => {
-  const { street } = body;
+const updateAddressService = async (id: string, body: IAddressReq) => {
   const addressRepository = AppDataSource.getRepository(Address);
   const userRepository = AppDataSource.getRepository(User);
 
-  const findAddress = await userRepository.findOne({
+  const findUser = await userRepository.findOne({
     where: {
-      address: {
-        street: street,
-      },
+      id: id,
     },
     relations: { address: true },
   });
 
-  if (!findAddress) {
-    throw new AppError("Address not found", 404);
-  }
-
-  const { address } = findAddress;
+  const { address } = findUser;
 
   const updateAddress = addressRepository.create({
     ...address,
     ...body,
   });
 
+  const updateUser = userRepository.create({
+    ...findUser,
+    address: address,
+  });
+
   await addressRepository.save(updateAddress);
+  await userRepository.save(updateUser);
 
   const validAddress = await AddressSchemaRet.validate(updateAddress, {
     stripUnknown: true,
