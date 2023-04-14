@@ -25,7 +25,7 @@ class User {
   email: string;
 
   @Column({ length: 15 })
-  zipCode: string;
+  cpf: string;
 
   @Column({ length: 11 })
   phone: string;
@@ -50,8 +50,8 @@ class User {
 
   @BeforeUpdate()
   @BeforeInsert()
-  hashZipCode() {
-    this.zipCode = hashSync(this.zipCode, 10);
+  hashCpf() {
+    this.cpf = hashSync(this.cpf, 10);
   }
 
   @OneToOne(() => Address)
