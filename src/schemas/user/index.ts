@@ -34,5 +34,3 @@ export const userSchemaReturned: SchemaOf<IUserResponse> = yup.object().shape({
   description: yup.string().required(),
   buyer: yup.boolean().required(),
 });
-
-export const userSchemaList = yup.array(userSchemaReturned);
