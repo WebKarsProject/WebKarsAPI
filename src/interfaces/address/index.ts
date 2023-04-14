@@ -1,4 +1,4 @@
-export interface IAddressRequest {
+export interface IAddressReq {
   street: string;
   number: string;
   complement?: string;
@@ -7,7 +7,16 @@ export interface IAddressRequest {
   zipcode: string;
 }
 
-export interface IAddressResponse {
+export interface IAddressUpdateReq {
+  street?: string;
+  number?: string;
+  complement?: string;
+  city?: string;
+  state?: string;
+  zipcode?: string;
+}
+
+export interface IAddressRes {
   id: string;
   street: string;
   number: string;
