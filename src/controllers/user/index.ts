@@ -1,6 +1,10 @@
 import { Request, Response } from "express";
 import { IUserRequest } from "../../interfaces/user";
 import { createUserService } from "../../services/user/createUser.service";
+import listUserService from "../../services/user/listUser.service";
+import retriveUserService from "../../services/user/retriveUser.service";
+import updateUserService from "../../services/user/updateUser.service";
+import deleteUserService from "../../services/user/deleteUser.service";
 
 export const createUserController = async (req: Request, res: Response) => {
   const user = await createUserService(req.body);
