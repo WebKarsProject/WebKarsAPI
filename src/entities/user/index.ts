@@ -9,7 +9,6 @@ import {
   JoinColumn,
   OneToMany,
 } from "typeorm";
-
 import Address from "../address";
 import Vehicle from "../vehicle";
 import Comment from "../comments";
