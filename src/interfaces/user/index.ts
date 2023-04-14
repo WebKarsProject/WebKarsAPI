@@ -1,4 +1,4 @@
-import { IAddressRes, IAddressUpdateReq } from "../address";
+import { IAddressReq, IAddressRes, IAddressUpdateReq } from "../address";
 
 export interface IUserReq {
   name: string;
@@ -9,7 +9,7 @@ export interface IUserReq {
   birthday: Date;
   description: string;
   buyer: boolean;
-  address: IAddressRes;
+  address: IAddressReq;
 }
 
 export interface IUserUpdateReq {
