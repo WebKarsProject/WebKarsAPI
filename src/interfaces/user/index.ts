@@ -1,4 +1,4 @@
-export interface IUserRequest {
+export interface IUserReq {
   name: string;
   email: string;
   cpf: string;
@@ -20,7 +20,7 @@ export interface IUserUpdateReq {
   buyer?: boolean;
 }
 
-export interface IUserResponse {
+export interface IUserRes {
   id: string;
   name: string;
   email: string;
