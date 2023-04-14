@@ -24,7 +24,7 @@ class User {
   @Column({ length: 100, unique: true })
   email: string;
 
-  @Column({ length: 15 })
+  @Column({ length: 150 })
   cpf: string;
 
   @Column({ length: 11 })
