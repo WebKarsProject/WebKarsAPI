@@ -1,4 +1,4 @@
-import { hashSync } from 'bcryptjs';
+import { hashSync } from "bcryptjs";
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -8,45 +8,50 @@ import {
   OneToOne,
   JoinColumn,
   OneToMany,
-} from 'typeorm';
+} from "typeorm";
+import Address from "../address";
+import Vehicle from "../vehicle";
+import Comment from "../comments";
 
-import Address from '../address';
-import Vehicle from '../vehicle';
-import Comment from '../comments';
-
-@Entity('users')
+@Entity("users")
 class User {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({ length: 50 })
   name: string;
 
-  @Column()
+  @Column({ length: 100, unique: true })
   email: string;
 
-  @Column()
-  cpf: string;
+  @Column({ length: 15 })
+  zipCode: string;
 
   @Column({ length: 11 })
   phone: string;
 
-  @Column()
+  @Column({ length: 150 })
   password: string;
 
   @Column()
   birthday: Date;
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
 
-  @Column()
+  @Column({ default: true })
   buyer: boolean;
 
   @BeforeUpdate()
   @BeforeInsert()
   hashPassword() {
     this.password = hashSync(this.password, 10);
+  }
+
+  @BeforeUpdate()
+  @BeforeInsert()
+  hashZipCode() {
+    this.zipCode = hashSync(this.zipCode, 10);
   }
 
   @OneToOne(() => Address)

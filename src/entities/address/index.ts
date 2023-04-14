@@ -1,31 +1,27 @@
-import {
-  PrimaryGeneratedColumn,
-  Entity,
-  Column,
-} from "typeorm";
+import { PrimaryGeneratedColumn, Entity, Column } from "typeorm";
 
-@Entity('adresses')
+@Entity("adresses")
 class Address {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
-  zipcode: number
+  @Column({ length: 8 })
+  zipcode: string;
+
+  @Column({ length: 100 })
+  city: string;
+
+  @Column({ length: 100 })
+  street: string;
+
+  @Column({ length: 2 })
+  state: string;
 
   @Column()
-  city: string
+  number: string;
 
-  @Column()
-  street: string
-
-  @Column()
-  state: string
-
-  @Column()
-  number: string
-
-  @Column()
-  complement: string
+  @Column({ nullable: true })
+  complement: string;
 }
 
-export default Address
+export default Address;
