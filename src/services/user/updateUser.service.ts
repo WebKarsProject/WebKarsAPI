@@ -3,13 +3,11 @@ import User from "../../entities/user";
 import { IUserRes, IUserUpdateReq } from "../../interfaces/user";
 import { userSchemaReturned } from "../../schemas/user";
 
-const updateUserService = async (
-  id: string,
-  body: IUserUpdateReq
-): Promise<IUserRes> => {
+const updateUserService = async (body: IUserUpdateReq): Promise<IUserRes> => {
+  const { email } = body;
   const userRepository = AppDataSource.getRepository(User);
 
-  const findUser = await userRepository.findOneBy({ id: id });
+  const findUser = await userRepository.findOneBy({ email: email });
 
   const updateUser = userRepository.create({
     ...findUser,
