@@ -1,10 +1,12 @@
 import AppDataSource from "../../data-source";
 import User from "../../entities/user";
 import { AppError } from "../../errors/AppError";
-import { IUserRequest } from "../../interfaces/user";
+import { IUserRequest, IUserResponse } from "../../interfaces/user";
 import { userSchemaReturned } from "../../schemas/user";
 
-export const createUserService = async (data: IUserRequest) => {
+export const createUserService = async (
+  data: IUserRequest
+): Promise<IUserResponse> => {
   const userRepository = AppDataSource.getRepository(User);
 
   const emailVerify = await userRepository.findOneBy({
