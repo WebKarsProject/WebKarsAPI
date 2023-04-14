@@ -3,7 +3,7 @@ import User from "../../entities/user";
 import { IUserResponse } from "../../interfaces/user";
 import { userSchemaReturned } from "../../schemas/user";
 
-const retriveUserService = async (id: string): Promise<IUserResponse> => {
+const profileUserService = async (id: string): Promise<IUserResponse> => {
   const userRepository = AppDataSource.getRepository(User);
 
   const findUser = await userRepository.findOneBy({ id: id });
@@ -14,4 +14,4 @@ const retriveUserService = async (id: string): Promise<IUserResponse> => {
 
   return validUser;
 };
-export default retriveUserService;
+export default profileUserService;
