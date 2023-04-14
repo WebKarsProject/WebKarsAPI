@@ -1,3 +1,5 @@
+import { IAddressRes, IAddressUpdateReq } from "../address";
+
 export interface IUserReq {
   name: string;
   email: string;
@@ -7,6 +9,7 @@ export interface IUserReq {
   birthday: Date;
   description: string;
   buyer: boolean;
+  address: IAddressRes;
 }
 
 export interface IUserUpdateReq {
@@ -18,6 +21,7 @@ export interface IUserUpdateReq {
   birthday?: Date;
   description?: string;
   buyer?: boolean;
+  address?: IAddressUpdateReq;
 }
 
 export interface IUserRes {
@@ -29,6 +33,7 @@ export interface IUserRes {
   birthday: Date;
   description: string;
   buyer: boolean;
+  address: IAddressRes;
 }
 
 export interface IUserLogin {
