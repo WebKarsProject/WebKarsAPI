@@ -9,7 +9,7 @@ export const userSchemaReq: SchemaOf<IUserRequest> = yup.object().shape({
   cpf: yup.string().required(),
   phone: yup.string().required(),
   birthday: yup.date().required(),
-  description: yup.string().required(),
+  description: yup.string().notRequired(),
   buyer: yup.boolean().required(),
 });
 
@@ -31,6 +31,6 @@ export const userSchemaReturned: SchemaOf<IUserResponse> = yup.object().shape({
   cpf: yup.string().required(),
   phone: yup.string().required(),
   birthday: yup.date().required(),
-  description: yup.string().required(),
+  description: yup.string().notRequired(),
   buyer: yup.boolean().required(),
 });
