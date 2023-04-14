@@ -9,6 +9,17 @@ export interface IUserRequest {
   buyer: boolean;
 }
 
+export interface IUserUpdateReq {
+  name?: string;
+  email?: string;
+  cpf?: string;
+  phone?: string;
+  password?: string;
+  birthday?: Date;
+  description?: string;
+  buyer?: boolean;
+}
+
 export interface IUserResponse {
   id: string;
   name: string;
