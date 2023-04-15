@@ -15,8 +15,6 @@ const profileUserService = async (id: string): Promise<IUserRes> => {
     stripUnknown: true,
   });
 
-  console.log(validUser);
-
   return validUser;
 };
 export default profileUserService;
