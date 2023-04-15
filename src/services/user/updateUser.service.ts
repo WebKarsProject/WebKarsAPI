@@ -1,7 +1,7 @@
 import AppDataSource from "../../data-source";
 import User from "../../entities/user";
 import { IUserRes, IUserUpdateReq } from "../../interfaces/user";
-import { userSchemaReturned } from "../../schemas/user";
+import { userSchemaRet } from "../../schemas/user";
 
 const updateUserService = async (body: IUserUpdateReq): Promise<IUserRes> => {
   const { email } = body;
@@ -16,7 +16,7 @@ const updateUserService = async (body: IUserUpdateReq): Promise<IUserRes> => {
 
   await userRepository.save(updateUser);
 
-  const validUser = await userSchemaReturned.validate(updateUser, {
+  const validUser = await userSchemaRet.validate(updateUser, {
     stripUnknown: true,
   });
 

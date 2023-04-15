@@ -33,7 +33,7 @@ class User {
   @Column({ length: 150 })
   password: string;
 
-  @Column()
+  @Column({ type: "date" })
   birthday: Date;
 
   @Column({ nullable: true })

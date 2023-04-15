@@ -2,7 +2,7 @@ import AppDataSource from "../../data-source";
 import User from "../../entities/user";
 import { AppError } from "../../errors/AppError";
 import { IUserReq, IUserRes } from "../../interfaces/user";
-import { userSchemaReturned } from "../../schemas/user";
+import { userSchemaRet } from "../../schemas/user";
 import createAddressService from "../address/createAddress.service";
 
 export const createUserService = async (data: IUserReq): Promise<IUserRes> => {
@@ -23,7 +23,7 @@ export const createUserService = async (data: IUserReq): Promise<IUserRes> => {
   const userCreate = userRepository.create({ ...data, address: findAddress });
   await userRepository.save(userCreate);
 
-  const userWithoutPassword = await userSchemaReturned.validate(userCreate, {
+  const userWithoutPassword = await userSchemaRet.validate(userCreate, {
     stripUnknown: true,
   });
 
