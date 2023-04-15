@@ -1,5 +1,4 @@
 import { DataSource } from "typeorm";
-import path from "path";
 import "dotenv/config";
 import User from "./entities/user";
 import Vehicle from "./entities/vehicle";
