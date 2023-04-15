@@ -34,7 +34,7 @@ class User {
   password: string;
 
   @Column({ type: "date" })
-  birthday: Date;
+  birthday: string;
 
   @Column({ nullable: true })
   description: string;
