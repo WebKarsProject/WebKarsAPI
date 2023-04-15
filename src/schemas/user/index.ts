@@ -1,7 +1,11 @@
 import * as yup from "yup";
 import { SchemaOf } from "yup";
 import { IUserReq, IUserRes, IUserUpdateReq } from "../../interfaces/user";
-import { AddressSchemaRet, AddressSchemaUpdate } from "../address";
+import {
+  AddressSchemaReq,
+  AddressSchemaRet,
+  AddressSchemaUpdate,
+} from "../address";
 
 export const userSchemaReq: SchemaOf<IUserReq> = yup.object().shape({
   name: yup.string().required(),
@@ -12,7 +16,7 @@ export const userSchemaReq: SchemaOf<IUserReq> = yup.object().shape({
   birthday: yup.date().required(),
   description: yup.string().notRequired(),
   buyer: yup.boolean().required(),
-  address: AddressSchemaRet,
+  address: AddressSchemaReq,
 });
 
 export const userSchemaUpdate: SchemaOf<IUserUpdateReq> = yup.object().shape({
