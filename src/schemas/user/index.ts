@@ -31,7 +31,7 @@ export const userSchemaUpdate: SchemaOf<IUserUpdateReq> = yup.object().shape({
   address: AddressSchemaUpdate,
 });
 
-export const userSchemaReturned: SchemaOf<IUserRes> = yup.object().shape({
+export const userSchemaRet: SchemaOf<IUserRes> = yup.object().shape({
   id: yup.string().required(),
   name: yup.string().required(),
   email: yup.string().email().required(),
