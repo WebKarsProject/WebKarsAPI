@@ -31,7 +31,6 @@ export const userSchemaReturned: SchemaOf<IUserRes> = yup.object().shape({
   id: yup.string().required(),
   name: yup.string().required(),
   email: yup.string().email().required(),
-  cpf: yup.string().required(),
   phone: yup.string().required(),
   birthday: yup.date().required(),
   description: yup.string().notRequired(),
