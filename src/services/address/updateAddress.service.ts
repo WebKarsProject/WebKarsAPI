@@ -1,11 +1,13 @@
 import AppDataSource from "../../data-source";
 import Address from "../../entities/address";
 import User from "../../entities/user";
-import { AppError } from "../../errors/AppError";
-import { IAddressReq } from "../../interfaces/address";
+import { IAddressReq, IAddressRes } from "../../interfaces/address";
 import { AddressSchemaRet } from "../../schemas/address";
 
-const updateAddressService = async (id: string, body: IAddressReq) => {
+const updateAddressService = async (
+  id: string,
+  body: IAddressReq
+): Promise<IAddressRes> => {
   const addressRepository = AppDataSource.getRepository(Address);
   const userRepository = AppDataSource.getRepository(User);
 
