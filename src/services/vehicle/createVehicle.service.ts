@@ -1,7 +1,6 @@
-import AppDataSource from '../../data-source';
-import Vehicle from '../../entities/vehicle';
-import { AppError } from '../../errors/AppError';
-import { IVehicleRequest } from '../../interfaces/vehicle';
+import AppDataSource from "../../data-source";
+import Vehicle from "../../entities/vehicle";
+import { IVehicleRequest } from "../../interfaces/vehicle";
 
 export const createVehicleService = async (data: IVehicleRequest) => {
   const vehicleRepository = AppDataSource.getRepository(Vehicle);
