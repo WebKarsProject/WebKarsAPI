@@ -3,13 +3,15 @@ import User from "../../entities/user";
 import { IUserRes, IUserUpdateReq } from "../../interfaces/user";
 import { userSchemaRet } from "../../schemas/user";
 
-const updateUserService = async (body: IUserUpdateReq): Promise<IUserRes> => {
-  const { email } = body;
+const updateUserService = async (
+  body: IUserUpdateReq,
+  id: string
+): Promise<IUserRes> => {
   const userRepository = AppDataSource.getRepository(User);
 
-  const findUser = await userRepository.findOneBy({ email: email });
+  const findUser = await userRepository.findOneBy({ id: id });
 
-  console.log(findUser);
+  console.log(findUser, "find?");
 
   const updateUser = userRepository.create({
     ...findUser,
@@ -21,6 +23,8 @@ const updateUserService = async (body: IUserUpdateReq): Promise<IUserRes> => {
   const validUser = await userSchemaRet.validate(updateUser, {
     stripUnknown: true,
   });
+
+  console.log(validUser, "validou");
 
   return validUser;
 };
