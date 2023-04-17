@@ -21,7 +21,6 @@ export interface IUserUpdateReq {
   birthday?: Date;
   description?: string;
   buyer?: boolean;
-  address?: IAddressUpdateReq;
 }
 
 export interface IUserRes {
