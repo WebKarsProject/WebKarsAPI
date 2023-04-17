@@ -9,9 +9,10 @@ const updateUserService = async (
 ): Promise<IUserRes> => {
   const userRepository = AppDataSource.getRepository(User);
 
-  const findUser = await userRepository.findOneBy({ id: id });
-
-  console.log(findUser, "find?");
+  const findUser = await userRepository.findOne({
+    where: { id },
+    relations: { address: true },
+  });
 
   const updateUser = userRepository.create({
     ...findUser,
@@ -23,8 +24,6 @@ const updateUserService = async (
   const validUser = await userSchemaRet.validate(updateUser, {
     stripUnknown: true,
   });
-
-  console.log(validUser, "validou");
 
   return validUser;
 };
