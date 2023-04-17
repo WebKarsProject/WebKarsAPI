@@ -2,12 +2,13 @@ import { Router } from "express";
 import {
   createUserController,
   profileUserController,
+  updateAddressController,
   updateUserController,
 } from "../../controllers/user";
-import userExistMiddleware from "../../middleware/userExist.middleware";
 import validateTokenMiddleware from "../../middleware/validateToken.middleware";
 import validateDataMiddleware from "../../middleware/validateData.middleware";
 import { userSchemaUpdate } from "../../schemas/user";
+import { AddressSchemaUpdate } from "../../schemas/address";
 
 export const userRoutes = Router();
 
@@ -23,4 +24,9 @@ userRoutes.patch(
   validateTokenMiddleware,
   updateUserController
 );
-userRoutes.patch("/address", validateTokenMiddleware);
+userRoutes.patch(
+  "/address",
+  validateDataMiddleware(AddressSchemaUpdate),
+  validateTokenMiddleware,
+  updateAddressController
+);
