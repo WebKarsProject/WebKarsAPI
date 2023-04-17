@@ -25,12 +25,13 @@ const updateAddressService = async (
     ...body,
   });
 
+  await addressRepository.save(updateAddress);
+
   const updateUser = userRepository.create({
     ...findUser,
     address: address,
   });
 
-  await addressRepository.save(updateAddress);
   await userRepository.save(updateUser);
 
   const validAddress = await AddressSchemaRet.validate(updateAddress, {
