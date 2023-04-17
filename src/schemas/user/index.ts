@@ -28,7 +28,6 @@ export const userSchemaUpdate: SchemaOf<IUserUpdateReq> = yup.object().shape({
   birthday: yup.date().notRequired(),
   description: yup.string().notRequired(),
   buyer: yup.boolean().notRequired(),
-  address: AddressSchemaUpdate,
 });
 
 export const userSchemaRet: SchemaOf<IUserRes> = yup.object().shape({
