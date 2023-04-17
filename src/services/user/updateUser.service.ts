@@ -9,6 +9,8 @@ const updateUserService = async (body: IUserUpdateReq): Promise<IUserRes> => {
 
   const findUser = await userRepository.findOneBy({ email: email });
 
+  console.log(findUser);
+
   const updateUser = userRepository.create({
     ...findUser,
     ...body,
