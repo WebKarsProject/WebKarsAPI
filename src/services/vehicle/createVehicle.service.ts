@@ -4,6 +4,7 @@ import User from '../../entities/user'
 import Vehicle from '../../entities/vehicle'
 import { AppError } from '../../errors/AppError'
 import { IVehicleRequest, IVehicleWithImageRequest } from '../../interfaces/vehicle'
+import { vehiclesSchemaCreateRet } from '../../schemas/vehicles'
 
 export const createVehicleService = async (data: IVehicleWithImageRequest, idUser: string) => {
   const vehicleRepository = AppDataSource.getRepository(Vehicle)
@@ -29,5 +30,9 @@ export const createVehicleService = async (data: IVehicleWithImageRequest, idUse
     await imageRepository.save(imageCreate)
   })
 
-  return vehicleCreate
+  const vehicleSerialized = await vehiclesSchemaCreateRet.validate(vehicleCreate, {
+    stripUnknown: true
+  })
+
+  return vehicleSerialized
 }
