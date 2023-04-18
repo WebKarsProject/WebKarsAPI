@@ -3,8 +3,9 @@ import { SchemaOf } from 'yup'
 import { userSchemaNoAdressRet } from '../user'
 import { imageSchemaReq, imageSchemaRet } from '../image'
 import { commentsSchemaRet } from '../comments'
+import { IVehicleCreatedResponse, IVehicleRetriveResponse, IVehicleWithImageRequest } from '../../interfaces/vehicle'
 
-export const vehiclesSchemaReq: SchemaOf<any> = yup.object().shape({
+export const vehiclesSchemaReq: SchemaOf<IVehicleWithImageRequest> = yup.object().shape({
   brand: yup.string().required(),
   model: yup.string().required(),
   year: yup.string().required(),
@@ -14,11 +15,11 @@ export const vehiclesSchemaReq: SchemaOf<any> = yup.object().shape({
   fipe: yup.number().required(),
   description: yup.string().required(),
   published: yup.boolean().required(),
-  // color: yup.string().required(),
+  color: yup.string().required(),
   images: yup.array(imageSchemaReq).required()
 })
 
-export const vehiclesSchemaRet: SchemaOf<any> = yup.object().shape({
+export const vehiclesSchemaRet: SchemaOf<IVehicleRetriveResponse> = yup.object().shape({
   id: yup.string().required(),
   brand: yup.string().required(),
   model: yup.string().required(),
@@ -29,13 +30,13 @@ export const vehiclesSchemaRet: SchemaOf<any> = yup.object().shape({
   fipe: yup.number().required(),
   description: yup.string().required(),
   published: yup.boolean().required(),
-  // color: yup.string().notRequired(),
+  color: yup.string().required(),
   user: userSchemaNoAdressRet,
   images: yup.array(imageSchemaRet).required(),
   comments: yup.array(commentsSchemaRet).required()
 })
 
-export const vehiclesSchemaCreateRet: SchemaOf<any> = yup.object().shape({
+export const vehiclesSchemaCreateRet: SchemaOf<IVehicleCreatedResponse> = yup.object().shape({
   id: yup.string().required(),
   brand: yup.string().required(),
   model: yup.string().required(),
@@ -46,6 +47,6 @@ export const vehiclesSchemaCreateRet: SchemaOf<any> = yup.object().shape({
   fipe: yup.number().required(),
   description: yup.string().required(),
   published: yup.boolean().required(),
-  // color: yup.string().required(),
+  color: yup.string().required(),
   user: userSchemaNoAdressRet
 })
