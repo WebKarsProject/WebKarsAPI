@@ -3,11 +3,12 @@ import { createVehicleController, deleteVehicleController, getVehicleController,
 import validateTokenMiddleware from '../../middleware/validateToken.middleware'
 import validateDataMiddleware from '../../middleware/validateData.middleware'
 import { vehiclesSchemaReq } from '../../schemas/vehicles'
+import isSellerMiddleware from '../../middleware/IsSeller.middleware'
 
 export const vehicleRoutes = Router()
 
-vehicleRoutes.post('', validateTokenMiddleware, validateDataMiddleware(vehiclesSchemaReq), createVehicleController)
+vehicleRoutes.post('', validateTokenMiddleware, validateDataMiddleware(vehiclesSchemaReq), isSellerMiddleware, createVehicleController)
 vehicleRoutes.get('', listAllVehiclesController)
 vehicleRoutes.get('/:id', getVehicleController)
-vehicleRoutes.patch('/:id', updateVehicleController)
-vehicleRoutes.delete('/:id', deleteVehicleController)
+vehicleRoutes.patch('/:id', validateTokenMiddleware, updateVehicleController)
+vehicleRoutes.delete('/:id', validateTokenMiddleware, deleteVehicleController)
