@@ -21,10 +21,13 @@ class Vehicle {
   model: string;
 
   @Column()
-  year: Date;
+  year: string;
 
   @Column()
   fuel: string;
+
+  @Column()
+  color: string;
 
   @Column()
   mileage: number;
