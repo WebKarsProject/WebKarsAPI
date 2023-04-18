@@ -7,8 +7,8 @@ import { deleteVehicleService } from '../../services/vehicle/deleteVehicle.servi
 import { updateVehicleService } from '../../services/vehicle/updateVehicle.service'
 
 const createVehicleController = async (req: Request, res: Response) => {
-  const data: IVehicleRequest = req.body
-  const idUser: string = req.user.id
+  const data = req.body
+  const idUser = req.user.id
 
   const vehicle = await createVehicleService(data, idUser)
 
