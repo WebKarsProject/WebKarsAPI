@@ -5,7 +5,7 @@ import { IUserNoAdressRes } from '../user'
 export interface IVehicleRequest {
   brand: string
   model: string
-  year: Date
+  year: string
   fuel: string
   color: string
   mileage: number
@@ -62,8 +62,9 @@ export interface IVehicleCreatedResponse {
 export interface IVehicleUpdate {
   brand?: string
   model?: string
-  year?: Date
+  year?: string
   fuel?: string
+  color?: string
   mileage?: number
   price?: number
   fipe?: number
