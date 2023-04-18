@@ -1,12 +1,16 @@
-import AppDataSource from "../../data-source";
-import Vehicle from "../../entities/vehicle";
-import { IVehicleRequest } from "../../interfaces/vehicle";
+import AppDataSource from '../../data-source'
+import User from '../../entities/user'
+import Vehicle from '../../entities/vehicle'
+import { IVehicleRequest } from '../../interfaces/vehicle'
 
-export const createVehicleService = async (data: IVehicleRequest) => {
-  const vehicleRepository = AppDataSource.getRepository(Vehicle);
+export const createVehicleService = async (data: IVehicleRequest, idUser: string) => {
+  const vehicleRepository = AppDataSource.getRepository(Vehicle)
+  const userRepository = AppDataSource.getRepository(User)
 
-  const vehicleCreate = vehicleRepository.create(data);
-  await vehicleRepository.save(vehicleCreate);
+  const userFind = await userRepository.findOneBy({ id: idUser })
 
-  return vehicleCreate;
-};
+  const vehicleCreate = vehicleRepository.create({ ...data, user: userFind })
+  await vehicleRepository.save(vehicleCreate)
+
+  return vehicleCreate
+}
