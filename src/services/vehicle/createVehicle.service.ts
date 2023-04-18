@@ -13,16 +13,12 @@ export const createVehicleService = async (data: IVehicleWithImageRequest, idUse
 
   const userFind = await userRepository.findOneBy({ id: idUser })
 
-  if (userFind.buyer) {
-    throw new AppError('Not authorized', 401)
-  }
-
   const images = data.images
   delete data.images
 
   const dataNoImage: IVehicleRequest = data
 
-  const vehicleCreate = vehicleRepository.create({ ...dataNoImage, user: userFind })
+  const vehicleCreate = vehicleRepository.create({ ...dataNoImage, user: userFind! })
   await vehicleRepository.save(vehicleCreate)
 
   images.forEach(async (img) => {
