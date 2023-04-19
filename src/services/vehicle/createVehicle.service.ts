@@ -21,8 +21,7 @@ export const createVehicleService = async (data: IVehicleWithImageRequest, idUse
   const vehicleCreate = vehicleRepository.create({ ...dataNoImage, user: userFind! })
   await vehicleRepository.save(vehicleCreate)
 
-  images.slice(0,6).forEach(async (img) => {
-    
+  images.slice(0, 6).forEach(async (img) => {
     const imageCreate = imageRepository.create({ ...img, vehicle: vehicleCreate })
     await imageRepository.save(imageCreate)
   })
