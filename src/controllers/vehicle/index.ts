@@ -34,15 +34,18 @@ const updateVehicleController = async (req: Request, res: Response) => {
 
   const vehicleId = req.params.id
 
-  const updateVehicle = await updateVehicleService(data, vehicleId)
+  const idUser = req.user.id
+
+  const updateVehicle = await updateVehicleService(data, vehicleId, idUser)
 
   return res.json(updateVehicle)
 }
 
 const deleteVehicleController = async (req: Request, res: Response) => {
   const vehicleId: string = req.params.id
+  const idUser = req.user.id
 
-  await deleteVehicleService(vehicleId)
+  await deleteVehicleService(vehicleId, idUser)
 
   return res.status(204).json()
 }
