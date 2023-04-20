@@ -26,6 +26,6 @@ export const updateAddressController = async (req: Request, res: Response) => {
 };
 
 export const retriverUserControler = async (req: Request, res: Response) => {
-  const data = await retriverUserService(req.user.id);
+  const data = await retriverUserService(req.params.id);
   return res.status(200).json(data);
 };
