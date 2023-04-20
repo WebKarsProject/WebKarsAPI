@@ -7,6 +7,7 @@ import {
   IVehicleCreatedResponse,
   IVehicleRetriveResponse,
   IVehicleWithImageRequest,
+  IVehiclesUser,
 } from "../../interfaces/vehicle";
 
 export const vehiclesSchemaReq: SchemaOf<IVehicleWithImageRequest> = yup
@@ -60,3 +61,20 @@ export const vehiclesSchemaCreateRet: SchemaOf<IVehicleCreatedResponse> = yup
     color: yup.string().required(),
     user: userSchemaNoAdressRet,
   });
+
+export const vehiclesUserReturn: SchemaOf<IVehiclesUser> = yup.object().shape({
+  id: yup.string().required(),
+  brand: yup.string().required(),
+  model: yup.string().required(),
+  year: yup.string().required(),
+  fuel: yup.string().required(),
+  mileage: yup.number().required(),
+  price: yup.number().required(),
+  fipe: yup.number().required(),
+  description: yup.string().required(),
+  published: yup.boolean().required(),
+  color: yup.string().required(),
+});
+
+export const listVehicleUser: SchemaOf<IVehiclesUser[]> =
+  yup.array(vehiclesUserReturn);
