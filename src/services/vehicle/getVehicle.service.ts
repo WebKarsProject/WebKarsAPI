@@ -1,5 +1,6 @@
 import AppDataSource from "../../data-source";
 import Vehicle from "../../entities/vehicle";
+import { vehiclesSchemaRet } from "../../schemas/vehicles";
 
 export const getVehicleService = async (id: string) => {
   const vehicleRepository = AppDataSource.getRepository(Vehicle);
@@ -9,6 +10,10 @@ export const getVehicleService = async (id: string) => {
     relations: { user: true, images: true, comments: true },
   });
 
-  return vehicles;
+  const vehicleSerialized = await vehiclesSchemaRet.validate(vehicles, {
+    stripUnknown: true,
+  });
+
+  return vehicleSerialized;
 };
 export default getVehicleService;
