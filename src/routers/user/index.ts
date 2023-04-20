@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   createUserController,
   profileUserController,
+  retriverUserControler,
   updateAddressController,
   updateUserController,
 } from "../../controllers/user";
@@ -32,3 +33,5 @@ userRoutes.patch(
   validateTokenMiddleware,
   updateAddressController
 );
+
+userRoutes.get("/:id", retriverUserControler);
