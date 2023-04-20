@@ -45,6 +45,24 @@ export const vehiclesSchemaRet: SchemaOf<IVehicleRetriveResponse> = yup
     comments: yup.array(commentsSchemaRet).required(),
   });
 
+export const vehiclesRetriver: SchemaOf<IVehicleRetriveResponse> = yup
+  .object()
+  .shape({
+    id: yup.string().required(),
+    brand: yup.string().required(),
+    model: yup.string().required(),
+    year: yup.string().required(),
+    fuel: yup.string().required(),
+    mileage: yup.number().required(),
+    price: yup.number().required(),
+    fipe: yup.number().required(),
+    description: yup.string().required(),
+    published: yup.boolean().required(),
+    color: yup.string().required(),
+    images: yup.array(imageSchemaRet).required().nullable(),
+    comments: yup.array(commentsSchemaRet).required(),
+  });
+
 export const vehiclesSchemaCreateRet: SchemaOf<IVehicleCreatedResponse> = yup
   .object()
   .shape({

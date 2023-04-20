@@ -4,6 +4,7 @@ import {
   IUserNoAdressRes,
   IUserReq,
   IUserRes,
+  IUserRetrive,
   IUserUpdateReq,
 } from "../../interfaces/user";
 import {
@@ -11,6 +12,7 @@ import {
   AddressSchemaRet,
   AddressSchemaUpdate,
 } from "../address";
+import { vehiclesRetriver } from "../vehicles";
 
 export const userSchemaReq: SchemaOf<IUserReq> = yup.object().shape({
   name: yup.string().required(),
@@ -44,6 +46,17 @@ export const userSchemaRet: SchemaOf<IUserRes> = yup.object().shape({
   description: yup.string().notRequired().nullable(),
   buyer: yup.boolean().required(),
   address: AddressSchemaRet,
+});
+
+export const userRetriverRet: SchemaOf<IUserRetrive> = yup.object().shape({
+  id: yup.string().required(),
+  name: yup.string().required(),
+  email: yup.string().email().required(),
+  phone: yup.string().required(),
+  birthday: yup.date().required(),
+  description: yup.string().notRequired().nullable(),
+  buyer: yup.boolean().required(),
+  vehicle: vehiclesRetriver.nullable(),
 });
 
 export const userSchemaNoAdressRet: SchemaOf<IUserNoAdressRes> = yup
