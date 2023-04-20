@@ -1,29 +1,26 @@
-import AppDataSource from '../../data-source'
-import Vehicle from '../../entities/vehicle'
-import { AppError } from '../../errors/AppError'
-import { vehiclesSchemaRet } from '../../schemas/vehicles'
+import AppDataSource from "../../data-source";
+import User from "../../entities/user";
+import Vehicle from "../../entities/vehicle";
+import { AppError } from "../../errors/AppError";
+import { vehiclesUserSchema } from "../../schemas/vehicles";
 
 export const getVehicleService = async (id: string) => {
-  const vehicleRepository = AppDataSource.getRepository(Vehicle)
+  const vehicleRepository = AppDataSource.getRepository(Vehicle);
+  const userRepository = AppDataSource.getRepository(User);
 
-  try {
-    const vehicles = await vehicleRepository.findOne({
-      where: {
-        id: id
-      },
-      relations: {
-        comments: true,
-        images: true,
-        user: true
-      }
-    })
+  const findUser = await userRepository.findOneBy({ id });
 
-    const vehicleSerialized = await vehiclesSchemaRet.validate(vehicles, {
-      stripUnknown: true
-    })
-
-    return vehicleSerialized
-  } catch (error) {
-    throw new AppError('Vehicle not found', 404)
+  if (!findUser) {
+    throw new AppError("User not found", 404);
   }
-}
+
+  const vehicles = await vehicleRepository.find({
+    where: { user: { id: id } },
+  });
+
+  const vehicleSerialized = await vehiclesUserSchema.validate(vehicles, {
+    stripUnknown: true,
+  });
+
+  return vehicleSerialized;
+};
