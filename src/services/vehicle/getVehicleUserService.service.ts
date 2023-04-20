@@ -4,7 +4,7 @@ import Vehicle from "../../entities/vehicle";
 import { AppError } from "../../errors/AppError";
 import { vehiclesUserSchema } from "../../schemas/vehicles";
 
-export const getVehicleService = async (id: string) => {
+export const getVehicleUserService = async (id: string) => {
   const vehicleRepository = AppDataSource.getRepository(Vehicle);
   const userRepository = AppDataSource.getRepository(User);
 
@@ -24,3 +24,4 @@ export const getVehicleService = async (id: string) => {
 
   return vehicleSerialized;
 };
+export default getVehicleUserService;
