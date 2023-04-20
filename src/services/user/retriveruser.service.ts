@@ -1,5 +1,6 @@
 import AppDataSource from "../../data-source";
 import User from "../../entities/user";
+import { userRetriverRet } from "../../schemas/user";
 
 export const retriverUserService = async (id: string) => {
   const userRepository = AppDataSource.getRepository(User);
@@ -9,6 +10,10 @@ export const retriverUserService = async (id: string) => {
     relations: { vehicle: true },
   });
 
-  return user;
+  const userValid = await userRetriverRet.validate(user, {
+    stripUnknown: true,
+  });
+
+  return userValid;
 };
 export default retriverUserService;
