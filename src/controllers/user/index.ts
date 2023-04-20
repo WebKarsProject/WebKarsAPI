@@ -3,6 +3,7 @@ import { createUserService } from "../../services/user/createUser.service";
 import updateUserService from "../../services/user/updateUser.service";
 import profileUserService from "../../services/user/profileUser.service";
 import updateAddressService from "../../services/address/updateAddress.service";
+import retriverUserService from "../../services/user/retriveruser.service";
 
 export const createUserController = async (req: Request, res: Response) => {
   const user = await createUserService(req.body);
