@@ -5,7 +5,7 @@ export const listAllVehicleService = async () => {
   const vehicleRepository = AppDataSource.getRepository(Vehicle);
 
   const vehicles = await vehicleRepository.find({
-    relations: { images: true },
+    relations: { images: true, user: true },
   });
 
   return vehicles;
