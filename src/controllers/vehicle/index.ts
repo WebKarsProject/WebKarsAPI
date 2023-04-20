@@ -5,6 +5,7 @@ import { listAllVehicleService } from "../../services/vehicle/listAllVehicle.ser
 import getVehicleUserService from "../../services/vehicle/getVehicleUserService.service";
 import { deleteVehicleService } from "../../services/vehicle/deleteVehicle.service";
 import { updateVehicleService } from "../../services/vehicle/updateVehicle.service";
+import getVehicleService from "../../services/vehicle/getVehicle.service";
 
 const createVehicleController = async (req: Request, res: Response) => {
   const data = req.body;
@@ -23,6 +24,11 @@ const listAllVehiclesController = async (req: Request, res: Response) => {
 
 const getVehicleUserController = async (req: Request, res: Response) => {
   const vehicles = await getVehicleUserService(req.user.id);
+  return res.json(vehicles);
+};
+
+const getVehicleController = async (req: Request, res: Response) => {
+  const vehicles = await getVehicleService(req.params.id);
   return res.json(vehicles);
 };
 
@@ -53,4 +59,5 @@ export {
   getVehicleUserController,
   updateVehicleController,
   deleteVehicleController,
+  getVehicleController,
 };

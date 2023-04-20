@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   createVehicleController,
   deleteVehicleController,
+  getVehicleController,
   getVehicleUserController,
   listAllVehiclesController,
   updateVehicleController,
@@ -24,6 +25,8 @@ vehicleRoutes.post(
 vehicleRoutes.get("", listAllVehiclesController);
 
 vehicleRoutes.get("/user", validateTokenMiddleware, getVehicleUserController);
+
+vehicleRoutes.get("/:id", getVehicleController);
 
 vehicleRoutes.patch(
   "/:id",
