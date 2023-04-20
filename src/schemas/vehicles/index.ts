@@ -62,7 +62,7 @@ export const vehiclesSchemaCreateRet: SchemaOf<IVehicleCreatedResponse> = yup
     user: userSchemaNoAdressRet,
   });
 
-export const vehiclesUserSchema: SchemaOf<IVehiclesUser> = yup.object().shape({
+export const vehiclesUserReturn: SchemaOf<IVehiclesUser> = yup.object().shape({
   id: yup.string().required(),
   brand: yup.string().required(),
   model: yup.string().required(),
@@ -75,3 +75,6 @@ export const vehiclesUserSchema: SchemaOf<IVehiclesUser> = yup.object().shape({
   published: yup.boolean().required(),
   color: yup.string().required(),
 });
+
+export const listVehicleUser: SchemaOf<IVehiclesUser[]> =
+  yup.array(vehiclesUserReturn);

@@ -23,11 +23,7 @@ vehicleRoutes.post(
 
 vehicleRoutes.get("", listAllVehiclesController);
 
-vehicleRoutes.get(
-  "user/:id",
-  validateTokenMiddleware,
-  getVehicleUserController
-);
+vehicleRoutes.get("/user", validateTokenMiddleware, getVehicleUserController);
 
 vehicleRoutes.patch(
   "/:id",
