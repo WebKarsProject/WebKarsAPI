@@ -7,7 +7,10 @@ import { listVehicleUser } from "../../schemas/vehicles";
 export const getVehicleService = async (id: string) => {
   const vehicleRepository = AppDataSource.getRepository(Vehicle);
 
-  const vehicles = await vehicleRepository.findOneBy({ id: id });
+  const vehicles = await vehicleRepository.findOne({
+    where: { id: id },
+    relations: { user: true, images: true, comments: true },
+  });
 
   return vehicles;
 };
