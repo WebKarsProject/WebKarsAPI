@@ -1,6 +1,6 @@
-import { ICommentsResponse } from "../comments";
-import { IimageReq } from "../images";
-import { IUserNoAdressRes } from "../user";
+import { ICommentsResponse } from '../comments';
+import { IimageReq } from '../images';
+import { IUserNoAdressRes } from '../user';
 
 export interface IVehicleRequest {
   brand: string;
@@ -68,6 +68,7 @@ export interface IVehiclesUser {
   price: number;
   fipe: number;
   description: string;
+  images: IimageReq[];
   published: boolean;
 }
 
