@@ -1,14 +1,14 @@
-import * as yup from "yup";
-import { SchemaOf } from "yup";
-import { userSchemaNoAdressRet } from "../user";
-import { imageSchemaReq, imageSchemaRet } from "../image";
-import { commentsSchemaRet } from "../comments";
+import * as yup from 'yup';
+import { SchemaOf } from 'yup';
+import { userSchemaNoAdressRet } from '../user';
+import { imageSchemaReq, imageSchemaRet } from '../image';
+import { commentsSchemaRet } from '../comments';
 import {
   IVehicleCreatedResponse,
   IVehicleRetriveResponse,
   IVehicleWithImageRequest,
   IVehiclesUser,
-} from "../../interfaces/vehicle";
+} from '../../interfaces/vehicle';
 
 export const vehiclesSchemaReq: SchemaOf<IVehicleWithImageRequest> = yup
   .object()
@@ -73,6 +73,7 @@ export const vehiclesUserReturn: SchemaOf<IVehiclesUser> = yup.object().shape({
   fipe: yup.number().required(),
   description: yup.string().required(),
   published: yup.boolean().required(),
+  images: yup.array(imageSchemaRet).required().nullable(),
   color: yup.string().required(),
 });
 
