@@ -1,22 +1,22 @@
-import { DataSource } from 'typeorm'
-import 'dotenv/config'
-import User from './entities/user'
-import Vehicle from './entities/vehicle'
-import Address from './entities/address'
-import Image from './entities/image'
-import Comment from './entities/comments'
-import { Initial1682600983342 } from './migrations/1682600983342-initial'
+import { DataSource } from "typeorm";
+import "dotenv/config";
+import User from "./entities/user";
+import Vehicle from "./entities/vehicle";
+import Address from "./entities/address";
+import Image from "./entities/image";
+import Comment from "./entities/comments";
+import { CreateTable1682608222499 } from "./migrations/1682608222499-create-table";
 
 const AppDataSource = new DataSource(
-  process.env.NODE_ENV === 'test'
+  process.env.NODE_ENV === "test"
     ? {
-        type: 'sqlite',
-        database: ':memory:',
+        type: "sqlite",
+        database: ":memory:",
         synchronize: true,
-        entities: ['src/entities/*.ts']
+        entities: ["src/entities/*.ts"],
       }
     : {
-        type: 'postgres',
+        type: "postgres",
         host: process.env.PGHOST,
         port: parseInt(process.env.PGPORT!),
         username: process.env.PGUSER,
@@ -25,8 +25,8 @@ const AppDataSource = new DataSource(
         logging: true,
         synchronize: false,
         entities: [User, Vehicle, Address, Image, Comment],
-        migrations: [Initial1682600983342]
+        migrations: [CreateTable1682608222499],
       }
-)
+);
 
-export default AppDataSource
+export default AppDataSource;
