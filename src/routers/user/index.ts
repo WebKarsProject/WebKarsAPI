@@ -2,6 +2,7 @@ import { Router } from 'express';
 import {
   createUserController,
   profileUserController,
+  removeUserController,
   resetPasswordController,
   retriverUserControler,
   sendResetPasswordEmailController,
@@ -22,6 +23,8 @@ userRoutes.post(
 );
 userRoutes.get('', validateTokenMiddleware, profileUserController);
 
+userRoutes.get('/:id', retriverUserControler);
+
 userRoutes.patch(
   '/:id',
   validateDataMiddleware(userSchemaUpdate),
@@ -36,8 +39,8 @@ userRoutes.patch(
   updateAddressController
 );
 
+userRoutes.delete('/:id', validateTokenMiddleware, removeUserController);
+
 userRoutes.post('/resetPassword', sendResetPasswordEmailController);
 
 userRoutes.patch('/resetPassword/:token', resetPasswordController);
-
-userRoutes.get('/:id', retriverUserControler);
