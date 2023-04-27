@@ -42,6 +42,9 @@ class User {
   @Column({ default: true })
   buyer: boolean;
 
+  @Column({ type: "uuid", nullable: true })
+  reset_token: string;
+
   @BeforeUpdate()
   @BeforeInsert()
   hashPassword() {

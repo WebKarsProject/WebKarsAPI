@@ -6,6 +6,7 @@ import Address from "./entities/address";
 import Image from "./entities/image";
 import Comment from "./entities/comments";
 import { CreateTable1681928479254 } from "./migrations/1681928479254-create-table";
+import { ResetPassword1682476580759 } from "./migrations/1682476580759-resetPassword";
 
 const AppDataSource = new DataSource(
   process.env.NODE_ENV === "test"
@@ -25,7 +26,7 @@ const AppDataSource = new DataSource(
         logging: true,
         synchronize: false,
         entities: [User, Vehicle, Address, Image, Comment],
-        migrations: [CreateTable1681928479254],
+        migrations: [CreateTable1681928479254, ResetPassword1682476580759],
       }
 );
 

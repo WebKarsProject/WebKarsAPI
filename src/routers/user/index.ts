@@ -2,7 +2,9 @@ import { Router } from "express";
 import {
   createUserController,
   profileUserController,
+  resetPasswordController,
   retriverUserControler,
+  sendResetPasswordEmailController,
   updateAddressController,
   updateUserController,
 } from "../../controllers/user";
@@ -33,5 +35,9 @@ userRoutes.patch(
   validateTokenMiddleware,
   updateAddressController
 );
+
+userRoutes.post("/resetPassword", sendResetPasswordEmailController);
+
+userRoutes.patch("/resetPassword/:token", resetPasswordController);
 
 userRoutes.get("/:id", retriverUserControler);
