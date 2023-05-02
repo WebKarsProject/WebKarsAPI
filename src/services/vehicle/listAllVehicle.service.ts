@@ -1,7 +1,7 @@
 import { Request } from 'express'
 import AppDataSource from '../../data-source'
 import Vehicle from '../../entities/vehicle'
-import { vehiclesAllReturn } from '../../schemas/vehicles'
+import { vehiclesAllArrReturn, vehiclesAllReturn } from '../../schemas/vehicles'
 
 export const listAllVehicleService = async (req: Request) => {
   const vehicleRepository = AppDataSource.getRepository(Vehicle)
@@ -26,7 +26,9 @@ export const listAllVehicleService = async (req: Request) => {
     previusPage: page - 1 === 0 ? null : page - 1
   }
 
-  const validatedVehicles = await vehiclesAllReturn.validate(vehicles, {
+  console.log(vehicles)
+
+  const validatedVehicles = await vehiclesAllArrReturn.validate(vehicles, {
     stripUnknown: true
   })
 
