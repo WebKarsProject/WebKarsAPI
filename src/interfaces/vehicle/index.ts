@@ -1,4 +1,4 @@
-import { ICommentsResponse } from '../comments';
+import { ICommentsResponse, ICommentsReq } from '../comments';
 import { IimageReq } from '../images';
 import { IUserNoAdressRes } from '../user';
 
@@ -69,6 +69,7 @@ export interface IVehiclesUser {
   fipe: number;
   description: string;
   images: IimageReq[];
+  comments: ICommentsReq[];
   published: boolean;
 }
 

@@ -1,4 +1,4 @@
-import { IAddressReq, IAddressRes, IAddressUpdateReq } from "../address";
+import { IAddressReq, IAddressRes, IAddressUpdateReq } from '../address';
 
 export interface IUserReq {
   name: string;
@@ -53,4 +53,9 @@ export interface ISendEmailRequest {
   to: string;
   subject: string;
   text: string;
+}
+
+export interface IUserName {
+  id: string;
+  name: string;
 }
