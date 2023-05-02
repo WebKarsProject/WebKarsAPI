@@ -78,7 +78,7 @@ export const vehiclesAllReturn: SchemaOf<IVehiclesAll> = yup.object().shape({
   fipe: yup.number().required(),
   description: yup.string().required(),
   published: yup.boolean().required(),
-  images: yup.array(imageSchemaRet).required().nullable(),
+  images: yup.array(imageSchemaRet).required(),
   user: userSchemaNoAdressRet,
   color: yup.string().required()
 })
