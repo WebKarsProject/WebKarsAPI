@@ -7,7 +7,7 @@ import Image from './entities/image'
 import Comment from './entities/comments'
 import { Initial1682600983342 } from './migrations/1682600983342-initial'
 import 'reflect-metadata'
-import path from 'node:path'
+import path from 'path'
 
 const setDataSourceConfig = (): DataSourceOptions => {
   const entitiesPath: string = path.join(__dirname, './entities/**.{js,ts}')
