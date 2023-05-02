@@ -8,12 +8,12 @@ import Comment from './entities/comments'
 import { Initial1682600983342 } from './migrations/1682600983342-initial'
 
 const AppDataSource = new DataSource(
-  process.env.NODE_ENV === 'test'
+  process.env.NODE_ENV === 'production'
     ? {
-        type: 'sqlite',
-        database: ':memory:',
-        synchronize: true,
-        entities: ['src/entities/*.ts']
+        type: 'postgres',
+        url: process.env.DATABASE_URL,
+        entities: [User, Vehicle, Address, Image, Comment],
+        migrations: [Initial1682600983342]
       }
     : {
         type: 'postgres',
