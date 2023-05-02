@@ -1,16 +1,17 @@
-import * as yup from "yup";
-import { SchemaOf } from "yup";
+import * as yup from 'yup';
+import { SchemaOf } from 'yup';
 import {
+  IUserName,
   IUserNoAdressRes,
   IUserReq,
   IUserRes,
   IUserUpdateReq,
-} from "../../interfaces/user";
+} from '../../interfaces/user';
 import {
   AddressSchemaReq,
   AddressSchemaRet,
   AddressSchemaUpdate,
-} from "../address";
+} from '../address';
 
 export const userSchemaReq: SchemaOf<IUserReq> = yup.object().shape({
   name: yup.string().required(),
@@ -57,3 +58,8 @@ export const userSchemaNoAdressRet: SchemaOf<IUserNoAdressRes> = yup
     description: yup.string().notRequired().nullable(),
     buyer: yup.boolean().required(),
   });
+
+export const userSchemaOnlyName: SchemaOf<IUserName> = yup.object().shape({
+  id: yup.string().notRequired(),
+  name: yup.string().notRequired(),
+});
