@@ -12,8 +12,16 @@
     "typeorm": "typeorm-ts-node-commonjs"
   },
   "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/express": "^4.17.17",
+    "@types/jsonwebtoken": "^9.0.1",
+    "@types/node": "^18.15.5",
+    "@types/nodemailer": "^6.4.7",
+    "@types/pg": "^8.6.6",
+    "@types/pg-format": "^1.0.2",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
@@ -25,19 +33,11 @@
     "pg-format": "^1.0.4",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^10.9.1",
-    "typeorm": "^0.3.14",
-    "yup": "0.32.11",
-    "zod": "^3.21.4",
-    "@types/bcryptjs": "^2.4.2",
-    "@types/express": "^4.17.17",
-    "@types/jsonwebtoken": "^9.0.1",
-    "@types/node": "^18.15.5",
-    "@types/nodemailer": "^6.4.7",
-    "@types/pg": "^8.6.6",
-    "@types/pg-format": "^1.0.2",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.0.2"
+    "typeorm": "^0.3.14",
+    "typescript": "^5.0.2",
+    "yup": "0.32.11",
+    "zod": "^3.21.4"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
