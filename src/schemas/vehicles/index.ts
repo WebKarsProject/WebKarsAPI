@@ -2,10 +2,11 @@ import * as yup from 'yup';
 import { SchemaOf } from 'yup';
 import { userSchemaNoAdressRet } from '../user';
 import { imageSchemaReq, imageSchemaRet } from '../image';
-import { commentsSchemaRet } from '../comments';
+import { commentsSchemaRet, commentsSchemaReturnOnlyInfo } from '../comments';
 import {
   IVehicleCreatedResponse,
   IVehicleRetriveResponse,
+  IVehicleUpdate,
   IVehicleWithImageRequest,
   IVehiclesUser,
 } from '../../interfaces/vehicle';
@@ -74,8 +75,24 @@ export const vehiclesUserReturn: SchemaOf<IVehiclesUser> = yup.object().shape({
   description: yup.string().required(),
   published: yup.boolean().required(),
   images: yup.array(imageSchemaRet).required().nullable(),
+  comments: yup.array(commentsSchemaRet).required().nullable(),
   color: yup.string().required(),
 });
+
+export const vehicleUpdateSchema: SchemaOf<IVehicleUpdate> = yup
+  .object()
+  .shape({
+    brand: yup.string().notRequired(),
+    model: yup.string().notRequired(),
+    year: yup.string().notRequired(),
+    fuel: yup.string().notRequired(),
+    mileage: yup.number().notRequired(),
+    price: yup.number().notRequired(),
+    fipe: yup.number().notRequired(),
+    description: yup.string().notRequired(),
+    published: yup.boolean().notRequired(),
+    color: yup.string().notRequired(),
+  });
 
 export const listVehicleUser: SchemaOf<IVehiclesUser[]> =
   yup.array(vehiclesUserReturn);
