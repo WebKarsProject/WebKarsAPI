@@ -41,7 +41,7 @@ class Vehicle {
   @Column()
   description: string;
 
-  @Column()
+  @Column({ default: true })
   published: boolean;
 
   @ManyToOne(() => User, (users) => users.vehicle)
