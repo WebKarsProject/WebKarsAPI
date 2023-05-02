@@ -7,16 +7,18 @@ import Image from './entities/image'
 import Comment from './entities/comments'
 import { Initial1682600983342 } from './migrations/1682600983342-initial'
 import 'reflect-metadata'
+import path from 'path'
+
+const entitiesPath: string = path.join(__dirname, './entities/**.{js,ts}')
+const migrationsPath: string = path.join(__dirname, './migrations/**.{js,ts}')
 
 const AppDataSource = new DataSource(
   process.env.NODE_ENV === 'production'
     ? {
         type: 'postgres',
         url: process.env.DATABASE_URL,
-        logging: true,
-        synchronize: false,
-        entities: [User, Vehicle, Address, Image, Comment],
-        migrations: [Initial1682600983342]
+        entities: [entitiesPath],
+        migrations: [migrationsPath]
       }
     : {
         type: 'postgres',
