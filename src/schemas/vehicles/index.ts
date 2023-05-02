@@ -83,6 +83,8 @@ export const vehiclesAllReturn: SchemaOf<IVehiclesAll> = yup.object().shape({
   color: yup.string().required()
 })
 
+export const vehiclesAllArrReturn: SchemaOf<IVehiclesAll[]> = yup.array(vehiclesAllReturn)
+
 export const vehicleUpdateSchema: SchemaOf<IVehicleUpdate> = yup.object().shape({
   brand: yup.string().notRequired(),
   model: yup.string().notRequired(),
