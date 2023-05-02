@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+} from 'typeorm';
 import User from '../user';
 import Vehicle from '../vehicle';
 
@@ -10,10 +16,13 @@ class Comment {
   @Column({ type: 'varchar', length: 256 })
   description: string;
 
+  @CreateDateColumn()
+  createdAt: Date;
+
   @ManyToOne(() => User)
   user: User;
 
-  @ManyToOne(() => Vehicle)
+  @ManyToOne(() => Vehicle, { onDelete: 'CASCADE' })
   vehicle: Vehicle;
 }
 

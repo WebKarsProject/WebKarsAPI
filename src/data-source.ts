@@ -5,7 +5,7 @@ import Vehicle from './entities/vehicle'
 import Address from './entities/address'
 import Image from './entities/image'
 import Comment from './entities/comments'
-import { Initial1682600983342 } from './migrations/1682600983342-initial'
+import { Initial1683048161799 } from './migrations/1683048161799-initial'
 
 const AppDataSource = new DataSource(
   process.env.NODE_ENV === 'production'
@@ -13,7 +13,7 @@ const AppDataSource = new DataSource(
         type: 'postgres',
         url: process.env.DATABASE_URL,
         entities: [User, Vehicle, Address, Image, Comment],
-        migrations: [Initial1682600983342]
+        migrations: [Initial1683048161799]
       }
     : {
         type: 'postgres',
@@ -25,7 +25,7 @@ const AppDataSource = new DataSource(
         logging: true,
         synchronize: false,
         entities: [User, Vehicle, Address, Image, Comment],
-        migrations: [Initial1682600983342]
+        migrations: [Initial1683048161799]
       }
 )
 

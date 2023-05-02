@@ -1,11 +1,11 @@
-import { Request, Response } from "express";
-import { IVehicleRequest, IVehicleUpdate } from "../../interfaces/vehicle";
-import { createVehicleService } from "../../services/vehicle/createVehicle.service";
-import { listAllVehicleService } from "../../services/vehicle/listAllVehicle.service";
-import getVehicleUserService from "../../services/vehicle/getVehicleUserService.service";
-import { deleteVehicleService } from "../../services/vehicle/deleteVehicle.service";
-import { updateVehicleService } from "../../services/vehicle/updateVehicle.service";
-import getVehicleService from "../../services/vehicle/getVehicle.service";
+import { Request, Response } from 'express';
+import { IVehicleRequest, IVehicleUpdate } from '../../interfaces/vehicle';
+import { createVehicleService } from '../../services/vehicle/createVehicle.service';
+import { listAllVehicleService } from '../../services/vehicle/listAllVehicle.service';
+import getVehicleUserService from '../../services/vehicle/getVehicleUserService.service';
+import { deleteVehicleService } from '../../services/vehicle/deleteVehicle.service';
+import { updateVehicleService } from '../../services/vehicle/updateVehicle.service';
+import getVehicleService from '../../services/vehicle/getVehicle.service';
 
 const createVehicleController = async (req: Request, res: Response) => {
   const data = req.body;
@@ -41,14 +41,14 @@ const updateVehicleController = async (req: Request, res: Response) => {
 
   const updateVehicle = await updateVehicleService(data, vehicleId, idUser);
 
-  return res.json(updateVehicle);
+  return res.status(201).json(updateVehicle);
 };
 
 const deleteVehicleController = async (req: Request, res: Response) => {
-  const vehicleId: string = req.params.id;
+  const idVehicle: string = req.params.id;
   const idUser = req.user.id;
 
-  await deleteVehicleService(vehicleId, idUser);
+  await deleteVehicleService(idVehicle, idUser);
 
   return res.status(204).json();
 };
