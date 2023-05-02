@@ -10,14 +10,12 @@ import 'reflect-metadata'
 import path from 'path'
 
 const setDataSourceConfig = (): DataSourceOptions => {
-  const entitiesPath: string = path.join(__dirname, './entities/**.{js,ts}')
-  const migrationsPath: string = path.join(__dirname, './migrations/**.{js,ts}')
   if (process.env.NODE_ENV === 'production') {
     return {
       type: 'postgres',
       url: process.env.DATABASE_URL,
-      entities: [entitiesPath],
-      migrations: [migrationsPath]
+      entities: [User, Vehicle, Address, Image, Comment],
+      migrations: [Initial1682600983342]
     }
   }
 
