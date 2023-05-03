@@ -1,12 +1,36 @@
-import AppDataSource from "../../data-source";
-import Vehicle from "../../entities/vehicle";
+import { Request } from 'express'
+import AppDataSource from '../../data-source'
+import Vehicle from '../../entities/vehicle'
+import { vehiclesAllArrReturn, vehiclesAllReturn } from '../../schemas/vehicles'
 
-export const listAllVehicleService = async () => {
-  const vehicleRepository = AppDataSource.getRepository(Vehicle);
+export const listAllVehicleService = async (req: Request) => {
+  const vehicleRepository = AppDataSource.getRepository(Vehicle)
 
-  const vehicles = await vehicleRepository.find({
-    relations: { images: true, user: true },
-  });
+  const pageSize = 16
+  const page = parseInt(req.query.page as string) || 1
+  const skip = (page - 1) * pageSize
 
-  return vehicles;
-};
+  const [vehicles, total] = await vehicleRepository.findAndCount({
+    take: pageSize,
+    skip,
+    relations: { images: true, user: true }
+  })
+
+  const totalPage = Math.ceil(total / pageSize)
+  const pagination = {
+    page: page,
+    pageSize: pageSize,
+    total: total,
+    totalPages: totalPage,
+    nextPage: page + 1 > total ? null : page + 1,
+    previusPage: page - 1 === 0 ? null : page - 1
+  }
+
+  console.log(vehicles)
+
+  const validatedVehicles = await vehiclesAllArrReturn.validate(vehicles, {
+    stripUnknown: true
+  })
+
+  return { pagination: { ...pagination, vehicles: validatedVehicles } }
+}
