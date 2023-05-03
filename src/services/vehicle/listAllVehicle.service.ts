@@ -32,5 +32,5 @@ export const listAllVehicleService = async (req: Request) => {
     stripUnknown: true
   })
 
-  return { pagination: { ...pagination, vehicles: { ...validatedVehicles } } }
+  return { pagination: { ...pagination, vehicles: validatedVehicles } }
 }
