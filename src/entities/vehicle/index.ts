@@ -1,59 +1,53 @@
-import {
-  PrimaryGeneratedColumn,
-  Entity,
-  Column,
-  ManyToOne,
-  OneToMany,
-} from 'typeorm';
-import User from '../user';
-import Image from '../image';
-import Comment from '../comments';
+import { PrimaryGeneratedColumn, Entity, Column, ManyToOne, OneToMany } from 'typeorm'
+import User from '../user'
+import Image from '../image'
+import Comment from '../comments'
 
 @Entity('vehicles')
 class Vehicle {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id: string
 
   @Column()
-  brand: string;
+  brand: string
 
   @Column()
-  model: string;
+  model: string
 
   @Column()
-  year: string;
+  year: string
 
   @Column()
-  fuel: string;
+  fuel: string
 
   @Column()
-  color: string;
+  color: string
 
   @Column()
-  mileage: number;
+  mileage: number
 
   @Column()
-  price: number;
+  price: number
 
   @Column()
-  fipe: number;
+  fipe: number
 
   @Column()
-  description: string;
+  description: string
 
   @Column({ default: true })
-  published: boolean;
+  published: boolean
 
-  @ManyToOne(() => User, (users) => users.vehicle)
-  user: User;
+  @ManyToOne(() => User, (users) => users.vehicle, { onDelete: 'CASCADE' })
+  user: User
 
   @OneToMany(() => Image, (images) => images.vehicle, { onDelete: 'CASCADE' })
-  images: Image[];
+  images: Image[]
 
   @OneToMany(() => Comment, (comments) => comments.vehicle, {
-    onDelete: 'CASCADE',
+    onDelete: 'CASCADE'
   })
-  comments: Comment[];
+  comments: Comment[]
 }
 
-export default Vehicle;
+export default Vehicle
