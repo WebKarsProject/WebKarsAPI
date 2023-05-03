@@ -57,14 +57,14 @@ class User {
     this.cpf = hashSync(this.cpf, 10);
   }
 
-  @OneToOne(() => Address)
+  @OneToOne(() => Address, { onDelete: 'CASCADE' })
   @JoinColumn()
   address: Address;
 
-  @OneToMany(() => Vehicle, (vehicles) => vehicles.user)
+  @OneToMany(() => Vehicle, (vehicles) => vehicles.user, { onDelete: 'CASCADE' })
   vehicle: Vehicle[];
 
-  @OneToMany(() => Comment, (comments) => comments.user)
+  @OneToMany(() => Comment, (comments) => comments.user, { onDelete: 'CASCADE' })
   comments: Comment[];
 }
 
