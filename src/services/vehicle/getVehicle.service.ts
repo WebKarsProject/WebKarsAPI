@@ -1,5 +1,6 @@
-import AppDataSource from "../../data-source";
-import Vehicle from "../../entities/vehicle";
+import AppDataSource from '../../data-source';
+import Vehicle from '../../entities/vehicle';
+import { vehiclesUserReturn } from '../../schemas/vehicles';
 
 export const getVehicleService = async (id: string) => {
   const vehicleRepository = AppDataSource.getRepository(Vehicle);
@@ -9,6 +10,10 @@ export const getVehicleService = async (id: string) => {
     relations: { user: true, images: true, comments: true },
   });
 
-  return vehicles;
+  const validatedVehicles = await vehiclesUserReturn.validate(vehicles, {
+    stripUnknown: true,
+  });
+
+  return validatedVehicles;
 };
 export default getVehicleService;
