@@ -17,9 +17,6 @@ export const resetPasswordService = async (
     throw new AppError("Invalid user", 404);
   }
 
-  console.log(password);
-  console.log(resetToken);
-
   user.password = password;
   user.reset_token = null;
 
