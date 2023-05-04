@@ -6,7 +6,10 @@ import { commentsSchemaReturnOnlyInfo } from '../../schemas/comments';
 export const getCommentService = async (id: string) => {
   const commentsRepository = AppDataSource.getRepository(Comment);
 
-  const commentFind = await commentsRepository.findOneBy({ id: id });
+  const commentFind = await commentsRepository.findOne({
+    where: { id: id },
+    relations: { user: true },
+  });
 
   if (!commentFind) {
     throw new AppError(`Comment not found`, 404);
