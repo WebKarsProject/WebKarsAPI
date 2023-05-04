@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { createVehicleController, deleteVehicleController, getVehicleController, getVehicleUserController, listAllVehiclesController, updateVehicleController } from '../../controllers/vehicle'
 import validateTokenMiddleware from '../../middleware/validateToken.middleware'
 import validateDataMiddleware from '../../middleware/validateData.middleware'
-import { vehiclesSchemaReq } from '../../schemas/vehicles'
+import { vehicleUpdateSchema, vehiclesSchemaReq } from '../../schemas/vehicles'
 import isSellerMiddleware from '../../middleware/IsSeller.middleware'
 import { createCommentController } from '../../controllers/comment'
 
@@ -16,7 +16,7 @@ vehicleRoutes.get('/user', validateTokenMiddleware, getVehicleUserController)
 
 vehicleRoutes.get('/:id', getVehicleController)
 
-vehicleRoutes.patch('/:id', validateTokenMiddleware, updateVehicleController)
+vehicleRoutes.patch('/:id', validateTokenMiddleware, validateDataMiddleware(vehicleUpdateSchema), updateVehicleController)
 
 vehicleRoutes.delete('/:id', validateTokenMiddleware, isSellerMiddleware, deleteVehicleController)
 
