@@ -99,4 +99,5 @@ export interface IVehicleUpdate {
   fipe?: number
   description?: string
   published?: boolean
+  images?: IimageReq[]
 }
