@@ -83,6 +83,22 @@ export const vehiclesAllReturn: SchemaOf<IVehiclesAll> = yup.object().shape({
   color: yup.string().required()
 })
 
+export const vehiclesUpdateReturn: SchemaOf<IVehiclesAll> = yup.object().shape({
+  id: yup.string().required(),
+  brand: yup.string().required(),
+  model: yup.string().required(),
+  year: yup.string().required(),
+  fuel: yup.string().required(),
+  mileage: yup.number().required(),
+  price: yup.number().required(),
+  fipe: yup.number().required(),
+  description: yup.string().required(),
+  published: yup.boolean().required(),
+  images: yup.array(imageSchemaRet).required(),
+  user: userSchemaNoAdressRet,
+  color: yup.string().required()
+})
+
 export const vehiclesAllArrReturn: SchemaOf<IVehiclesAll[]> = yup.array(vehiclesAllReturn)
 
 export const vehicleUpdateSchema: SchemaOf<IVehicleUpdate> = yup.object().shape({
@@ -95,7 +111,8 @@ export const vehicleUpdateSchema: SchemaOf<IVehicleUpdate> = yup.object().shape(
   fipe: yup.number().notRequired(),
   description: yup.string().notRequired(),
   published: yup.boolean().notRequired(),
-  color: yup.string().notRequired()
+  color: yup.string().notRequired(),
+  images: yup.array(imageSchemaReq).notRequired()
 })
 
 export const listVehicleUser: SchemaOf<IVehiclesUser[]> = yup.array(vehiclesUserReturn)
