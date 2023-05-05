@@ -1,12 +1,13 @@
 import AppDataSource from "../../data-source";
 import User from "../../entities/user";
-import { IUserRes, IUserUpdateReq } from "../../interfaces/user";
-import { userSchemaRet } from "../../schemas/user";
+import { IUserNoAdressRes } from "../../interfaces/user";
+import { IUserUpdateReq } from "../../interfaces/user";
+import { userSchemaUpdate } from "../../schemas/user";
 
 const updateUserService = async (
   body: IUserUpdateReq,
   id: string
-): Promise<IUserRes> => {
+): Promise<IUserNoAdressRes> => {
   const userRepository = AppDataSource.getRepository(User);
 
   const findUser = await userRepository.findOne({
@@ -21,7 +22,7 @@ const updateUserService = async (
 
   await userRepository.save(updateUser);
 
-  const validUser = await userSchemaRet.validate(updateUser, {
+  const validUser = await userSchemaUpdate.validate(updateUser, {
     stripUnknown: true,
   });
 
