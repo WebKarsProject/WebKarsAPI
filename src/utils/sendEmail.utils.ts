@@ -41,7 +41,7 @@ class EmailService {
       theme: "default",
       product: {
         name: "WebKars",
-        link: `${protocol}://${host}`,
+        link: `https://new-volleyball-orange-italy.bohr.io`,
       },
     });
     const email = {
