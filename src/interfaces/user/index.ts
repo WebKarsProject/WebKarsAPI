@@ -1,4 +1,4 @@
-import { IAddressReq, IAddressRes, IAddressUpdateReq } from '../address';
+import { IAddressReq, IAddressRes, IAddressUpdateReq } from "../address";
 
 export interface IUserReq {
   name: string;
@@ -35,7 +35,7 @@ export interface IUserRes {
 }
 
 export interface IUserNoAdressRes {
-  id: string;
+  id?: string;
   name: string;
   email: string;
   phone: string;

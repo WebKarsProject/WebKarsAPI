@@ -23,7 +23,7 @@ const listAllVehiclesController = async (req: Request, res: Response) => {
 }
 
 const getVehicleUserController = async (req: Request, res: Response) => {
-  const vehicles = await getVehicleUserService(req.user.id)
+  const vehicles = await getVehicleUserService(req)
   return res.json(vehicles)
 }
 
