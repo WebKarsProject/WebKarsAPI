@@ -18,3 +18,7 @@ export const commentsSchemaReturnOnlyInfo = yup.object().shape({
   createdAt: yup.string().required(),
   user: userSchemaOnlyName,
 });
+
+export const commentsSchemaReqUpdate = yup.object().shape({
+  description: yup.string().notRequired(),
+});
