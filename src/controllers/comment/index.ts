@@ -3,6 +3,7 @@ import { createCommentService } from '../../services/comments/createComment.serv
 import { ICommentsReq } from '../../interfaces/comments';
 import { getCommentService } from '../../services/comments/getComment.service';
 import removeCommentService from '../../services/comments/removeComments.service';
+import updateCommentService from '../../services/comments/updateComment.serice';
 
 const createCommentController = async (req: Request, res: Response) => {
   const data: ICommentsReq = req.body;
@@ -22,7 +23,16 @@ const getCommentController = async (req: Request, res: Response) => {
   return res.status(201).json(commentGet);
 };
 
-export const removeCommentController = async (req: Request, res: Response) => {
+const updateCommentController = async (req: Request, res: Response) => {
+  const id = req.params.id;
+
+  const data = await updateCommentService(id, req.body);
+  console.log(id);
+  console.log(req.body);
+  return res.status(201).json(data);
+};
+
+const removeCommentController = async (req: Request, res: Response) => {
   const idComment = req.params.id;
 
   await removeCommentService(idComment);
@@ -30,4 +40,9 @@ export const removeCommentController = async (req: Request, res: Response) => {
   return res.status(204).json({});
 };
 
-export { createCommentController, getCommentController };
+export {
+  createCommentController,
+  getCommentController,
+  updateCommentController,
+  removeCommentController,
+};

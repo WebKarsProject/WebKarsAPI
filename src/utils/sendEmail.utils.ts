@@ -1,13 +1,13 @@
-import { createTransport } from "nodemailer";
-import { ISendEmailRequest } from "../interfaces/user";
-import "dotenv/config";
-import { AppError } from "../errors/AppError";
-import Mailgen from "mailgen";
+import { createTransport } from 'nodemailer';
+import { ISendEmailRequest } from '../interfaces/user';
+import 'dotenv/config';
+import { AppError } from '../errors/AppError';
+import Mailgen from 'mailgen';
 
 class EmailService {
   async sendEmail({ to, subject, text }: ISendEmailRequest) {
     const transporter = createTransport({
-      host: "smtp.gmail.com",
+      host: 'smtp.gmail.com',
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
@@ -16,17 +16,17 @@ class EmailService {
 
     await transporter
       .sendMail({
-        from: "projetowebkars@gmail.com",
+        from: 'projetowebkars@gmail.com',
         to,
         subject,
         html: text,
       })
       .then(() => {
-        console.log("Email send with success");
+        console.log('Email send with success');
       })
       .catch((err) => {
         console.log(err);
-        throw new AppError("Error sending email, try again later", 500);
+        throw new AppError('Error sending email, try again later', 500);
       });
   }
 
@@ -38,7 +38,7 @@ class EmailService {
     resetToken: string
   ) {
     const mailGenerator = new Mailgen({
-      theme: "default",
+      theme: 'default',
       product: {
         name: "WebKars",
         link: `https://webkars.bohr.io`,
@@ -48,9 +48,9 @@ class EmailService {
       body: {
         name: userName,
         intro:
-          "You have received this email because a password reset request for your account was received.",
+          'You have received this email because a password reset request for your account was received.',
         action: {
-          instructions: "Click the button below to reset your password:",
+          instructions: 'Click the button below to reset your password:',
           button: {
             color: "#4529E6",
             text: "Reset your password",
@@ -58,7 +58,7 @@ class EmailService {
           },
         },
         outro:
-          "If you did not request a password reset, no further action is required on your part.",
+          'If you did not request a password reset, no further action is required on your part.',
       },
     };
 
@@ -66,7 +66,7 @@ class EmailService {
 
     const emailTemplate = {
       to: userEmail,
-      subject: "Reset password",
+      subject: 'Reset password',
       text: emailBody,
     };
 
