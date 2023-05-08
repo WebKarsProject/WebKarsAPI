@@ -62,4 +62,5 @@ export const userSchemaNoAdressRet: SchemaOf<IUserNoAdressRes> = yup
 export const userSchemaOnlyName: SchemaOf<IUserName> = yup.object().shape({
   id: yup.string().notRequired(),
   name: yup.string().notRequired(),
+  phone: yup.string().notRequired(),
 });
