@@ -1,71 +1,60 @@
-import { hashSync } from "bcryptjs";
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  BeforeUpdate,
-  BeforeInsert,
-  OneToOne,
-  JoinColumn,
-  OneToMany,
-} from "typeorm";
-import Address from "../address";
-import Vehicle from "../vehicle";
-import Comment from "../comments";
+import { hashSync } from 'bcryptjs'
+import { Entity, PrimaryGeneratedColumn, Column, BeforeUpdate, BeforeInsert, OneToOne, JoinColumn, OneToMany } from 'typeorm'
+import Address from '../address'
+import Vehicle from '../vehicle'
+import Comment from '../comments'
 
-@Entity("users")
+@Entity('users')
 class User {
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id: string
 
   @Column({ length: 50 })
-  name: string;
+  name: string
 
   @Column({ length: 100, unique: true })
-  email: string;
+  email: string
 
   @Column({ length: 150 })
-  cpf: string;
+  cpf: string
 
   @Column({ length: 11 })
-  phone: string;
+  phone: string
 
   @Column({ length: 150 })
-  password: string;
+  password: string
 
-  @Column({ type: "date" })
-  birthday: Date;
+  @Column({ type: 'date' })
+  birthday: Date
 
   @Column({ nullable: true })
-  description: string;
+  description: string
 
   @Column({ default: true })
-  buyer: boolean;
+  buyer: boolean
 
-  @Column({ type: "uuid", nullable: true })
-  reset_token: string;
+  @Column({ type: 'uuid', nullable: true })
+  reset_token: string
 
-  @BeforeUpdate()
   @BeforeInsert()
   hashPassword() {
-    this.password = hashSync(this.password, 10);
+    this.password = hashSync(this.password, 10)
   }
 
-  @BeforeUpdate()
   @BeforeInsert()
   hashCpf() {
-    this.cpf = hashSync(this.cpf, 10);
+    this.cpf = hashSync(this.cpf, 10)
   }
 
   @OneToOne(() => Address, { onDelete: 'CASCADE' })
   @JoinColumn()
-  address: Address;
+  address: Address
 
   @OneToMany(() => Vehicle, (vehicles) => vehicles.user, { onDelete: 'CASCADE' })
-  vehicle: Vehicle[];
+  vehicle: Vehicle[]
 
   @OneToMany(() => Comment, (comments) => comments.user, { onDelete: 'CASCADE' })
-  comments: Comment[];
+  comments: Comment[]
 }
 
-export default User;
+export default User
