@@ -1,31 +1,26 @@
-import AppDataSource from "../../data-source";
-import User from "../../entities/user";
-import { IUserNoAdressRes } from "../../interfaces/user";
-import { IUserUpdateReq } from "../../interfaces/user";
-import { userSchemaUpdate } from "../../schemas/user";
+import AppDataSource from '../../data-source'
+import User from '../../entities/user'
+import { IUserNoAdressRes } from '../../interfaces/user'
+import { IUserUpdateReq } from '../../interfaces/user'
+import { userSchemaUpdate } from '../../schemas/user'
 
-const updateUserService = async (
-  body: IUserUpdateReq,
-  id: string
-): Promise<IUserNoAdressRes> => {
-  const userRepository = AppDataSource.getRepository(User);
-
+const updateUserService = async (body: IUserUpdateReq, id: string): Promise<IUserNoAdressRes> => {
+  const userRepository = AppDataSource.getRepository(User)
   const findUser = await userRepository.findOne({
-    where: { id },
-    relations: { address: true },
-  });
+    where: { id }
+  })
 
   const updateUser = userRepository.create({
     ...findUser,
-    ...body,
-  });
+    ...body
+  })
 
-  await userRepository.save(updateUser);
+  await userRepository.save(updateUser)
 
   const validUser = await userSchemaUpdate.validate(updateUser, {
-    stripUnknown: true,
-  });
+    stripUnknown: true
+  })
 
-  return validUser;
-};
-export default updateUserService;
+  return validUser
+}
+export default updateUserService
