@@ -19,7 +19,7 @@ class Comment {
   @CreateDateColumn()
   createdAt: Date;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, { onDelete: 'CASCADE' })
   user: User;
 
   @ManyToOne(() => Vehicle, { onDelete: 'CASCADE' })
