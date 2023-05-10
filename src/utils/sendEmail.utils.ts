@@ -40,8 +40,8 @@ class EmailService {
     const mailGenerator = new Mailgen({
       theme: 'default',
       product: {
-        name: 'WebKars',
-        link: `${protocol}://${host}`,
+        name: "WebKars",
+        link: `https://webkars.bohr.io`,
       },
     });
     const email = {
@@ -52,9 +52,9 @@ class EmailService {
         action: {
           instructions: 'Click the button below to reset your password:',
           button: {
-            color: '#4529E6',
-            text: 'Reset your password',
-            link: `${protocol}://${host}/users/resetPassword/${resetToken}`,
+            color: "#4529E6",
+            text: "Reset your password",
+            link: `https://webkars.bohr.io/users/resetPassword/${resetToken}`,
           },
         },
         outro:
