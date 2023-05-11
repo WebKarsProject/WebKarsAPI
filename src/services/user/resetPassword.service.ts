@@ -17,7 +17,7 @@ export const resetPasswordService = async (
     throw new AppError("Invalid user", 404);
   }
 
-  user.password = password;
+  user.password = hashSync(password, 10);
   user.reset_token = null;
 
   await userRepository.save(user);
